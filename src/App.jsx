@@ -423,15 +423,6 @@ export default function LRNPortageSite() {
               <div className="space-y-7">
                 <InputRange label="TJM" value={tjm} setValue={setTjm} min={120} max={2000} suffix="€" allowManualInput helper="Vous pouvez utiliser le curseur ou saisir directement le TJM souhaité." />
                 <InputRange label="Jours travaillés / mois" value={jours} setValue={setJours} min={1} max={23} suffix="j" />
-                <div className="rounded-3xl border border-blue-100 bg-blue-50 p-5">
-                  <div className="flex items-center justify-between gap-4">
-                    <span className="font-semibold text-slate-800">Frais de gestion</span>
-                    <span className="rounded-full bg-white px-4 py-2 font-bold text-blue-700">7%</span>
-                  </div>
-                  <p className="mt-2 text-xs leading-5 text-slate-500">
-                    Les frais de gestion sont intégrés automatiquement dans la simulation.
-                  </p>
-                </div>
                 <InputRange label="Distance domicile → client" value={km} setValue={setKm} min={0} max={200} step={1} suffix="km" allowManualInput helper="Indiquez la distance aller simple. Le calcul IK applique automatiquement l’aller-retour." />
                 <InputRange label="Puissance fiscale" value={cv} setValue={setCv} min={3} max={10} step={1} suffix="CV" allowManualInput />
               </div>
@@ -439,8 +430,6 @@ export default function LRNPortageSite() {
               <div className="rounded-[2rem] bg-slate-950 p-6 text-white md:p-8">
                 <Icon name="calculator" className="mb-6 h-10 w-10 text-blue-300" />
                 <Result label="Chiffre d’affaires mensuel" value={formatCurrency(simulation.ca)} />
-                <Result label="Frais de gestion estimés" value={formatCurrency(simulation.fraisGestion)} />
-                <Result label="Enveloppe après frais de gestion" value={formatCurrency(simulation.enveloppeDisponible)} />
                 <Result label="Kilomètres mensuels retenus" value={`${Math.round(simulation.kmMensuel)} km`} />
                 <Result label="Frais kilométriques estimés (IK)" value={formatCurrency(simulation.ik)} />
                 <Result label="Panier repas" value={formatCurrency(simulation.repas)} />
