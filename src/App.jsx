@@ -291,7 +291,7 @@ export default function LRNPortageSite() {
 
               <div className="mt-8 flex flex-col gap-4 sm:flex-row">
                 <a href="#simulation" className="w-full sm:w-auto">
-                  <Button className="w-full rounded-full bg-blue-600 px-7 py-6 text-base text-white hover:bg-blue-700 sm:w-auto">
+                  <Button className="w-full rounded-full bg-blue-600 px-7 py-6 text-base hover:bg-blue-700 sm:w-auto">
                     Faire une simulation <Icon name="arrow" className="ml-2 h-4 w-4" />
                   </Button>
                 </a>
@@ -356,7 +356,7 @@ export default function LRNPortageSite() {
                 Le portage salarial permet au consultant de réaliser une mission chez un client tout en bénéficiant d’un statut salarié. LRN PORTAGE contractualise avec le client, facture la prestation, établit la paie et assure le suivi administratif.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <a href="#simulation"><Button className="w-full rounded-full bg-slate-950 px-7 py-6 text-white hover:bg-slate-800 sm:w-auto">Comprendre le portage</Button></a>
+                <a href="#simulation"><Button className="w-full rounded-full bg-slate-950 px-7 py-6 hover:bg-slate-800 sm:w-auto">Comprendre le portage</Button></a>
                 <a href={`mailto:${CONTACT_EMAIL}`}><Button variant="outline" className="w-full rounded-full border-slate-300 px-7 py-6 text-slate-950 sm:w-auto">Poser une question</Button></a>
               </div>
             </div>
@@ -589,7 +589,7 @@ function CardContent({ className = "", children }) {
 
 function Button({ className = "", variant = "default", children, ...props }) {
   const base = "inline-flex items-center justify-center font-semibold transition";
-  const variantClass = variant === "outline" ? "" : "";
+  const variantClass = variant === "outline" ? "" : "text-white";
   return (
     <button className={`${base} ${variantClass} ${className}`} {...props}>
       {children}
