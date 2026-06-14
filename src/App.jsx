@@ -11,6 +11,7 @@ const PANIER_REPAS = 10;
 
 const TAUX_CHARGES_PATRONALES = 0.42;
 const TAUX_CHARGES_SALARIALES = 0.22;
+const FRAIS_GESTION_FIXES = 7;
 
 const NAV_ITEMS = [
   ["#portage", "Portage"],
@@ -207,13 +208,12 @@ runSmokeTests();
 export default function LRNPortageSite() {
   const [tjm, setTjm] = useState(230);
   const [jours, setJours] = useState(20);
-  const [frais, setFrais] = useState(7);
   const [km, setKm] = useState(0);
   const [cv, setCv] = useState(5);
   const [menuOpen, setMenuOpen] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", phone: "", profile: "Consultant", message: "" });
 
-  const simulation = useMemo(() => calculateSimulation(tjm, jours, frais, km, cv), [tjm, jours, frais, km, cv]);
+  const simulation = useMemo(() => calculateSimulation(tjm, jours, FRAIS_GESTION_FIXES, km, cv), [tjm, jours, km, cv]);
 
   const contactMailto = buildMailto({
     subject: `Demande de contact - LRN PORTAGE - ${form.profile}`,
@@ -222,7 +222,7 @@ export default function LRNPortageSite() {
 
   const simulationMailto = buildMailto({
     subject: "Demande de simulation - LRN PORTAGE",
-    body: `Bonjour LRN PORTAGE,\n\nJe souhaite avoir une simulation en portage salarial.\n\nTJM : ${tjm} €\nJours travaillés / mois : ${jours}\nFrais de gestion estimés : ${frais}%\nDistance domicile-client : ${km} km aller, soit ${simulation.kmMensuel} km/mois aller-retour\nPuissance fiscale : ${cv} CV\nCA mensuel estimé : ${formatCurrency(simulation.ca)}\nIK mensuelles estimées : ${formatCurrency(simulation.ik)}\nPanier repas : ${formatCurrency(simulation.repas)}\nForfait téléphone : ${formatCurrency(simulation.tel)}\nFrais remboursés estimés : ${formatCurrency(simulation.remboursements)}\nBudget salaire chargé employeur : ${formatCurrency(simulation.coutEmployeurSalaire)}\nSalaire brut estimé : ${formatCurrency(simulation.salaireBrut)}\nSalaire net estimé avant impôt : ${formatCurrency(simulation.salaireNet)}\nNet total indicatif avec frais : ${formatCurrency(simulation.netEstime)}\n\nCordialement,`,
+    body: `Bonjour LRN PORTAGE,\n\nJe souhaite avoir une simulation en portage salarial.\n\nTJM : ${tjm} €\nJours travaillés / mois : ${jours}\nFrais de gestion estimés : ${FRAIS_GESTION_FIXES}%\nDistance domicile-client : ${km} km aller, soit ${simulation.kmMensuel} km/mois aller-retour\nPuissance fiscale : ${cv} CV\nCA mensuel estimé : ${formatCurrency(simulation.ca)}\nIK mensuelles estimées : ${formatCurrency(simulation.ik)}\nPanier repas : ${formatCurrency(simulation.repas)}\nForfait téléphone : ${formatCurrency(simulation.tel)}\nFrais remboursés estimés : ${formatCurrency(simulation.remboursements)}\nBudget salaire chargé employeur : ${formatCurrency(simulation.coutEmployeurSalaire)}\nSalaire brut estimé : ${formatCurrency(simulation.salaireBrut)}\nSalaire net estimé avant impôt : ${formatCurrency(simulation.salaireNet)}\nNet total indicatif avec frais : ${formatCurrency(simulation.netEstime)}\n\nCordialement,`,
   });
 
   return (
@@ -421,9 +421,17 @@ export default function LRNPortageSite() {
           <Card className="rounded-[2rem] border-slate-100 shadow-xl">
             <CardContent className="grid gap-8 p-6 md:grid-cols-2 md:p-8">
               <div className="space-y-7">
-                <InputRange label="TJM" value={tjm} setValue={setTjm} min={120} max={600} suffix="€" allowManualInput helper="Vous pouvez utiliser le curseur ou saisir directement votre TJM." />
+                <InputRange label="TJM" value={tjm} setValue={setTjm} min={120} max={2000} suffix="€" allowManualInput helper="Vous pouvez utiliser le curseur ou saisir directement le TJM souhaité." />
                 <InputRange label="Jours travaillés / mois" value={jours} setValue={setJours} min={1} max={23} suffix="j" />
-                <InputRange label="Frais de gestion" value={frais} setValue={setFrais} min={3} max={12} suffix="%" />
+                <div className="rounded-3xl border border-blue-100 bg-blue-50 p-5">
+                  <div className="flex items-center justify-between gap-4">
+                    <span className="font-semibold text-slate-800">Frais de gestion</span>
+                    <span className="rounded-full bg-white px-4 py-2 font-bold text-blue-700">7%</span>
+                  </div>
+                  <p className="mt-2 text-xs leading-5 text-slate-500">
+                    Les frais de gestion sont intégrés automatiquement dans la simulation.
+                  </p>
+                </div>
                 <InputRange label="Distance domicile → client" value={km} setValue={setKm} min={0} max={200} step={1} suffix="km" allowManualInput helper="Indiquez la distance aller simple. Le calcul IK applique automatiquement l’aller-retour." />
                 <InputRange label="Puissance fiscale" value={cv} setValue={setCv} min={3} max={10} step={1} suffix="CV" allowManualInput />
               </div>
