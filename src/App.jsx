@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 const CONTACT_EMAIL = "LRNPORTAGE@gmail.com";
 const CONTACT_PHONE_DISPLAY = "06 34 38 30 78";
 const CONTACT_PHONE_TEL = "+33634383078";
+const APP_URL = "https://lrn-portage-app.vercel.app";
 
 const TELEPHONE_FORFAIT = 50;
 const TELEPHONE_REMBOURSEMENT = TELEPHONE_FORFAIT * 0.5;
@@ -20,6 +21,7 @@ const NAV_ITEMS = [
   ["#simulation", "Simulation"],
   ["#faq", "FAQ"],
   ["#contact", "Contact"],
+  ["https://lrn-portage-app.vercel.app", "Connexion"],
 ];
 
 const SERVICES = [
@@ -240,9 +242,16 @@ export default function LRNPortageSite() {
             ))}
           </nav>
 
-          <a href={`tel:${CONTACT_PHONE_TEL}`} className="hidden md:block">
-            <Button className="rounded-full bg-blue-700 px-5 hover:bg-blue-800">Être rappelé</Button>
-          </a>
+          <div className="hidden items-center gap-3 md:flex">
+            <a href={APP_URL}>
+              <Button variant="outline" className="rounded-full border border-blue-200 bg-blue-50 px-5 text-blue-700 hover:bg-blue-100">
+                Connexion
+              </Button>
+            </a>
+            <a href={`tel:${CONTACT_PHONE_TEL}`}>
+              <Button className="rounded-full bg-blue-700 px-5 hover:bg-blue-800">Être rappelé</Button>
+            </a>
+          </div>
 
           <button
             type="button"
@@ -262,7 +271,10 @@ export default function LRNPortageSite() {
                   {label}
                 </a>
               ))}
-              <a href={`tel:${CONTACT_PHONE_TEL}`} className="mt-2 rounded-full bg-blue-700 px-5 py-4 text-center text-white">
+              <a href={APP_URL} className="mt-2 rounded-full border border-blue-200 bg-blue-50 px-5 py-4 text-center text-blue-700">
+                Espace connecté
+              </a>
+              <a href={`tel:${CONTACT_PHONE_TEL}`} className="rounded-full bg-blue-700 px-5 py-4 text-center text-white">
                 Appeler LRN PORTAGE
               </a>
             </nav>
@@ -293,6 +305,11 @@ export default function LRNPortageSite() {
                 <a href="#simulation" className="w-full sm:w-auto">
                   <Button className="w-full rounded-full bg-blue-600 px-7 py-6 text-base hover:bg-blue-700 sm:w-auto">
                     Faire une simulation <Icon name="arrow" className="ml-2 h-4 w-4" />
+                  </Button>
+                </a>
+                <a href={APP_URL} className="w-full sm:w-auto">
+                  <Button variant="outline" className="w-full rounded-full border-white/30 bg-white/5 px-7 py-6 text-base text-white hover:bg-white/10 sm:w-auto">
+                    Espace connecté
                   </Button>
                 </a>
                 <a href={`tel:${CONTACT_PHONE_TEL}`} className="w-full sm:w-auto">
