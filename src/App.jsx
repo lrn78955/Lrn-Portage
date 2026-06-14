@@ -588,7 +588,7 @@ function CardContent({ className = "", children }) {
 }
 
 function Button({ className = "", variant = "default", children, ...props }) {
-  const base = "inline-flex items-center justify-center font-semibold transition";
+  const base = "inline-flex min-h-12 items-center justify-center rounded-full px-6 py-3 text-sm font-semibold transition md:text-base";
   const variantClass = variant === "outline" ? "" : "text-white";
   return (
     <button className={`${base} ${variantClass} ${className}`} {...props}>
