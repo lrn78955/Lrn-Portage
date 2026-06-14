@@ -356,7 +356,7 @@ export default function LRNPortageSite() {
                 Le portage salarial permet au consultant de réaliser une mission chez un client tout en bénéficiant d’un statut salarié. LRN PORTAGE contractualise avec le client, facture la prestation, établit la paie et assure le suivi administratif.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <a href="#simulation"><Button className="w-full rounded-full bg-slate-950 px-7 py-6 hover:bg-slate-800 sm:w-auto">Comprendre le portage</Button></a>
+                <a href="#simulation"><Button className="w-full rounded-full bg-slate-950 px-7 py-6 text-white hover:bg-slate-800 sm:w-auto">Comprendre le portage</Button></a>
                 <a href={`mailto:${CONTACT_EMAIL}`}><Button variant="outline" className="w-full rounded-full border-slate-300 px-7 py-6 text-slate-950 sm:w-auto">Poser une question</Button></a>
               </div>
             </div>
