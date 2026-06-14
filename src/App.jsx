@@ -291,7 +291,7 @@ export default function LRNPortageSite() {
 
               <div className="mt-8 flex flex-col gap-4 sm:flex-row">
                 <a href="#simulation" className="w-full sm:w-auto">
-                  <Button className="w-full rounded-full bg-blue-600 px-7 py-6 text-base hover:bg-blue-700 sm:w-auto">
+                  <Button className="w-full rounded-full bg-blue-600 px-7 py-6 text-base text-white hover:bg-blue-700 sm:w-auto">
                     Faire une simulation <Icon name="arrow" className="ml-2 h-4 w-4" />
                   </Button>
                 </a>
